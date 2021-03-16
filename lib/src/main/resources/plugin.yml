@@ -1,9 +1,9 @@
-name: RPEngine
-main: com.valledor.rpenginemod.Engine
+name: RPEngineMod
+main: com.develmode.rpenginemod.Engine
 version: 4.5.3
 softdepend: [Vault]
 loadbefore: [Essentials]
-authors: [steffansk1997, Tofuus]
+authors: [steffansk1997, Tofuus, develmode]
 description: >
              RolePlay Engine
 commands:
