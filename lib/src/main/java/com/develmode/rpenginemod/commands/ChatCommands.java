@@ -35,25 +35,13 @@ public class ChatCommands extends AbstractCommand {
       }
       if (cmd.getName().equalsIgnoreCase("whisper"))
         if (args.length >= 1) {
-          StringBuilder sb2 = new StringBuilder();
-          for (int j = 0; j < args.length; j++)
-            sb2.append(args[j]).append(" ");
-          String message2 = sb2.toString().trim();
-          Engine.mu.sendRangedMessage(this.player,
-              Lang.CHAT_WHISPER_FORMAT.toString().replace("%m", message2).replace("%n", this.rpp.getName()),
-              "whisperRange");
+          Engine.mu.sendRangedMessage(this.player, this.formattedMessage(super.rpp.getName(), args), "whisperRange");
         } else {
           this.player.sendMessage(Lang.CHAT_WHISPER_USAGE.toString().replace("%c", Commandlabel.toLowerCase()));
         }
       if (cmd.getName().equalsIgnoreCase("shout")) {
         if (args.length >= 1) {
-          StringBuilder sb2 = new StringBuilder();
-          for (int j = 0; j < args.length; j++)
-            sb2.append(args[j]).append(" ");
-          String message2 = sb2.toString().trim();
-          Engine.mu.sendRangedMessage(this.player,
-              Lang.CHAT_SHOUT_FORMAT.toString().replace("%m", message2).replace("%n", this.rpp.getName()),
-              "shoutRange");
+          Engine.mu.sendRangedMessage(this.player, this.formattedMessage(super.rpp.getName(), args), "shoutRange");
         } else {
           this.player.sendMessage(Lang.CHAT_SHOUT_USAGE.toString().replace("%c", Commandlabel.toLowerCase()));
         }
@@ -63,6 +51,15 @@ public class ChatCommands extends AbstractCommand {
       this.rpp.getPlayer().sendMessage(Lang.CHAT_DISABLED.toString());
     }
     return false;
+  }
+
+  private String formattedMessage(String playerName, String[] messageArgs) {
+    var splitMsgs = String.join(" ", messageArgs).split("\\*", 2);
+    var message = splitMsgs.length > 0 ? splitMsgs[0].trim() : "";
+    var emotes = splitMsgs.length >= 2 ? String.format("*%s*", splitMsgs[1].trim().replaceAll("^\\*+|\\*+$", "")) : "";
+    var formattedMessage = Lang.CHAT_WHISPER_FORMAT.toString().replace("%e", emotes).replace("%m", message)
+        .replace("%n", this.rpp.getName());
+    return formattedMessage;
   }
 }
 
