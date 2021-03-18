@@ -35,3 +35,7 @@ dependencies {
 
 
 archivesBaseName = "RPEngineMod"
+task deploy(type: Copy) {
+    from file("$buildDir/libs/${archivesBaseName}.jar")
+    into file("${project.rootDir}/server/plugins/")
+}

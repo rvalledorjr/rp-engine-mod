@@ -4,3 +4,26 @@
 # Ignore Gradle build output directory
 build
 hs_err_pid*.log
+replay_pid*.log
+
+
+server/*
+
+!server/run.bat
+!server/paper-*.jar
+!server/eula.txt
+!server/server.properties
+!server/plugins
+
+server/plugins/bStats/config.yml
+server/plugins/NametagEdit/config.yml
+server/plugins/NametagEdit/groups.yml
+server/plugins/NametagEdit/players.yml
+server/plugins/PlugMan/config.yml
+server/plugins/ProtocolLib/config.yml
+server/plugins/ProtocolLib/lastupdate
+server/plugins/RPEngineMod/config.yml
+server/plugins/RPEngineMod/data.db
+server/plugins/RPEngineMod/en_us.yml
+server/plugins/Vault/config.yml
+server/plugins/RPEngineMod.jar
